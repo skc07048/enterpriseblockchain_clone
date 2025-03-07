@@ -139,3 +139,7 @@ a {
   display: block;
   color: #fff;
 }
+button {
+  border: none;
+  outline: none;
+}

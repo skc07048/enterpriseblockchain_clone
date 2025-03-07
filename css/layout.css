@@ -1165,12 +1165,26 @@
   background: url("../img/card/image-sec-4-1.png") no-repeat;
   background-size: cover;
 }
+.creator_item_inner::before {
+  content: "box";
+  font-size: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(30px);
+  border-radius: 20px;
+}
 .creator_card_item:nth-child(2) .creator_item_inner {
   background: var(--color-g);
 }
 .creator_card_item:nth-child(3) .creator_item_inner {
-  background: url("../img/card/image-sec-3-3.png") no-repeat;
-  background-size: cover;
+  background: var(--color-black);
+}
+.creator_card_item:nth-child(4) .creator_item_inner {
+  background: var(--color-b);
 }
 .creator_card_item:nth-child(3) .creator_item_inner::before {
   content: "";
@@ -1192,6 +1206,7 @@
   font-size: 50px;
   font-weight: 700;
   margin-right: auto;
+  line-height: 1.2;
 }
 .creator_card_head .creator_caption {
   width: 60px;
@@ -1214,18 +1229,22 @@
 }
 .creator_text {
   width: 100%;
-  margin-bottom: 30px;
 }
 .creator_text p {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.6;
-  margin-bottom: 3px;
 }
 .creator_text span {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
+}
+.creator_text .text_bottom {
+  margin-top: 8px;
+}
+.creator_text p:nth-child(2) {
+  margin-top: 24px;
 }
 .creator_card_info {
   width: 100%;
@@ -1254,4 +1273,57 @@
   line-height: 1.6;
   font-weight: 700;
   padding: 0 60px 0 160px;
+}
+/* 그라운드 섹션 */
+.ground {
+  width: 100%;
+  padding: 0 100px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+.ground_con {
+  padding: 200px 0;
+
+  width: 100%;
+  height: 100%;
+}
+.ground_content {
+  width: 100%;
+  height: 100%;
+}
+.ground_title {
+  font-size: 72px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 34px;
+}
+.ground_description p {
+  font-size: 24px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+.ground_btn_wrap {
+  margin-top: 70px;
+  display: flex;
+  gap: 18px;
+}
+#company {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+#coalition,
+#employment {
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  color: var(--color-black);
+}
+#company,
+#coalition,
+#employment {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 3px 21px 1px;
+  line-height: 2.2;
+  display: flex;
+  text-align: center;
 }

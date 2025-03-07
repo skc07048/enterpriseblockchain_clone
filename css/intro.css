@@ -12,7 +12,7 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: #000;
+  background: var(--color-black);
 }
 .intro_video video {
   position: absolute;

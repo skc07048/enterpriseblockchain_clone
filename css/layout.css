@@ -1,15 +1,71 @@
 @charset "utf-8";
 @import url("./reset.css");
 @import url("./common.css");
-@import url("./intro.css");
+/* 인트로 섹션 */
+.intro_wrap {
+  height: 100vh;
+  position: relative;
+}
+.intro_video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: var(--color-black);
+}
+.intro_video video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.intro_description {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 2s;
+}
 
+.intro_description .intro_description_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  padding: 0 32px;
+  font-weight: 700;
+  transform: translate(-50%, -50%);
+  font-size: 52px;
+  line-height: 1.35;
+  opacity: 0;
+}
+
+.intro_description .intro_description_text:last-child {
+  font-size: 24px;
+  line-height: 1.67;
+}
+.intro_scroll_down {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
 /* 쇼케이스 섹션 */
 .showcase {
   position: relative;
   height: 100vh;
 }
 .showcase_content {
-  position: sticky;
+  position: absolute;
   top: 0;
   width: 100%;
   height: 100vh;
@@ -20,6 +76,8 @@
   height: 100%;
 }
 .showcase_img_wrap .showcase_img {
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -27,6 +85,11 @@
   bottom: 0;
   overflow: hidden;
   z-index: -1;
+  transform: translateY(100vh);
+  transition: transform 0.3s;
+}
+.showcase_img:nth-child(1) {
+  transform: translateY(0);
 }
 .showcase_img_wrap .showcase_img img {
   width: 100%;
@@ -40,8 +103,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 2;
 }
 .showcase_intro .showcase_intro_inner {
   font-size: 100px;
@@ -52,6 +115,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .showcase_descirption {
   width: 100%;
   height: 100%;
@@ -60,6 +124,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 2;
 }
 .showcase_descirption .showcase_descirption_text {
   position: absolute;
@@ -69,6 +134,7 @@
   font-size: 24px;
   font-weight: 600;
   line-height: 1.6;
+  opacity: 0;
 }
 /* 챌린지 섹션 */
 .challenge {

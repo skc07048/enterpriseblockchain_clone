@@ -15,6 +15,8 @@ body {
   background-color: var(--color-black);
   overflow-x: hidden;
   letter-spacing: -1px;
+  transition: background-color 0.5s;
+  will-change: background-color;
 }
 
 .wrapper {
@@ -194,7 +196,7 @@ header {
   color: #fff;
   z-index: 99;
   transform: translateY(-100%);
-  transition: transform 0.5s;
+  transition: transform 0.5s, filter 0.3s;
 }
 .header_con {
   width: 100%;
@@ -234,23 +236,22 @@ h1 img {
 }
 #gnb .lang_list {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
 }
 #gnb > ul > li > a {
   padding: 23px 25px;
 }
 
-#gnb .lang_wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-}
-#gnb .language_menu {
+.language_menu {
   width: fit-content;
   height: fit-content;
   position: absolute;
-  top: 5vh;
-  right: 1.2vw;
+  top: 3vh;
+  right: 0;
   padding: 2px 14px 4px 13px;
   box-sizing: border-box;
   border: 1px solid #5a5a5a;
@@ -260,6 +261,15 @@ h1 img {
   border-radius: 5px;
   background-color: #000;
   opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+.language_menu.active {
+  opacity: 1;
+  visibility: visible;
+}
+.language_menu > li:last-child {
+  opacity: 0.4;
 }
 /* 푸터 */
 footer {

@@ -105,6 +105,7 @@
   left: 0;
   background: rgba(0, 0, 0, 0);
   z-index: 2;
+  transition: background-color 0.3s;
 }
 .showcase_intro .showcase_intro_inner {
   font-size: 100px;
@@ -114,6 +115,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .showcase_descirption {
@@ -173,25 +176,23 @@
   overflow: hidden;
   padding: 218px 0 226px;
 }
-.prove::before {
-  content: "";
+.prove_box1 {
   width: 22%;
   height: 140px;
   background-color: #fff;
-  display: block;
   position: absolute;
   top: 0;
-  right: -22%;
+  right: 0;
+  transform: translateX(100%);
 }
-.prove::after {
-  content: "";
+.prove_box2 {
   width: 22%;
   height: 140px;
   background-color: #fff;
-  display: block;
   position: absolute;
   bottom: 0;
-  left: -22%;
+  left: 0;
+  transform: translateX(-100%);
 }
 /* 타이틀 */
 .prove_title {
@@ -206,7 +207,7 @@
 }
 /* talent 섹션 */
 .talent {
-  background-color: var(--color-white);
+  background: var(--color-white);
   color: var(--color-black);
 }
 .talent_con {
@@ -255,8 +256,8 @@
 }
 /* possibility 섹션  */
 .possibility {
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background: var(--color-white);
+  color: var(--color-black);
 }
 .possibility_con {
   width: 100%;

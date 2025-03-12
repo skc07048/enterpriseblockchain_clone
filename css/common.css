@@ -15,7 +15,7 @@ body {
   background-color: var(--color-black);
   overflow-x: hidden;
   letter-spacing: -1px;
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
   will-change: background-color;
 }
 
@@ -210,10 +210,10 @@ header {
 /* 로고 */
 h1 {
   width: 100px;
+  filter: brightness(0) invert(1);
 }
 h1 img {
   width: 100%;
-  filter: brightness(0) invert(1);
 }
 /* 메뉴 */
 #gnb {
@@ -259,7 +259,7 @@ h1 img {
   line-height: 1.33;
   font-weight: 600;
   border-radius: 5px;
-  background-color: #000;
+  background: #000;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;

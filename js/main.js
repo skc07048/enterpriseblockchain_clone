@@ -1,6 +1,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
   // lang 버튼
   const langList = document.querySelector(".lang_list");
   const menu = document.querySelector(".language_menu");
@@ -15,6 +16,33 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     menu.classList.remove("active");
   });
+
+  let topBtn = document.querySelector(".top_btn");
+  let introSection = document.querySelector(".intro");
+  // 스크롤 트리거 설정
+  ScrollTrigger.create({
+    trigger: [".showcase", ".service_third_con"],
+    start: "0% 0%",
+    end: "100% 100%",
+    endTrigger: "#footer",
+    markers: true,
+    onUpdate: function (self) {
+      let direction = self.direction;
+
+      if (direction === 1) {
+        topBtn.classList.remove("active");
+      } else {
+        topBtn.classList.add("active");
+      }
+    },
+    onLeaveBack: function () {
+      topBtn.classList.remove("active");
+    },
+  });
+
+  topBtn.addEventListener("click", function () {
+    gsap.to(window, { duration: 1, scrollTo: 0 });
+  });
   // ------------------------------------------------------------------------
   // intro 섹션
   const introTl = gsap
@@ -27,10 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
         scrub: true,
       },
     })
-    .to(["header", ".intro_scroll_down"], {
+    .to("header", {
       scrollTrigger: {
         trigger: ".wrapper",
-        start: "5.5% top",
+        start: "3% top",
       },
       y: 0,
       opacity: 1,
@@ -169,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .timeline({
       scrollTrigger: {
         trigger: ".talent",
-        start: "80% 0%",
+        start: "83.5% 0%",
         end: "100% 100%",
         scrub: 1,
       },
@@ -197,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .timeline({
       scrollTrigger: {
         trigger: ".wrapper",
-        start: "55% 0%",
+        start: "49% 0%",
         end: "100% 100%",
         toggleActions: "play none none reverse",
       },
@@ -215,8 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     })
     .to([".prove_box1", ".prove_box2"], { x: 0 })
-    .to(".prove_list:nth-child(1)", { x: "-18%", scrub: 0 }, "-=0.5")
-    .to(".prove_list:nth-child(3)", { x: "19%", scrub: 0 }, "-=0.5");
+    .to(".prove_list:nth-child(1)", { x: "-18%" }, "-=0.5")
+    .to(".prove_list:nth-child(3)", { x: "19%" }, "-=0.5");
   // ------------------------------------------------------------------------
   // possibility 섹션
   const possibility = gsap
@@ -263,14 +291,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------------------------------------------
   // service 섹션
   let serviceTitle = document.querySelector(".service_head").offsetWidth;
-  console.log(serviceTitle);
   let serviceCon = document.querySelector(".service_con");
   const service = gsap
     .timeline({
       scrollTrigger: {
         trigger: ".service_con",
         start: "0% 0%",
-        end: "+=200%",
+        end: "+=100%",
         scrub: 0,
         pin: true,
         invalidateOnRefresh: true,
@@ -287,11 +314,11 @@ document.addEventListener("DOMContentLoaded", () => {
     .to(".card_item:nth-child(4)", 1, { xPercent: -300, x: -40 * 3 }, "card")
     .to(".icon_unlock", { opacity: 0 }, "card")
     .to(".icon_lock", { opacity: 1 }, "card+=0.5")
-    .to("card_item:not(:last-child)", { opacity: 0 })
+    .to(".card_item:not(:last-child)", { opacity: 0 })
     .to(".icon_lock", { opacity: 0 })
     .to(".card_info_icon .title_text", { opacity: 1 }, "+=0.5")
     .to(".card_list", { opacity: 0 }, "+=0.2")
-    .to(".service_main_title", { opacity: 1 });
+    .to(".service_second_con .service_main_title", { opacity: 1 }, "-=0.5");
 
   // service 두번재 영역
   const serviceSecond = gsap.timeline({
@@ -301,14 +328,14 @@ document.addEventListener("DOMContentLoaded", () => {
       end: "100%100%",
       scrub: 0,
       invalidateOnRefresh: true,
-    },
-    onEnter: function () {
-      gsap.set(".service_second_con .service_main_title", { opacity: 0 });
-      gsap.set(".service_third_con .service_main_title", { opacity: 1 });
-    },
-    onLeaveBack: function () {
-      gsap.set(".service_second_con .service_main_title", { opacity: 1 });
-      gsap.set(".service_third_con .service_main_title", { opacity: 0 });
+      onEnter: function () {
+        gsap.set(".service_second_con .service_main_title", { opacity: 1 });
+        gsap.set(".service_third_con .service_main_title", { opacity: 0 });
+      },
+      onLeaveBack: function () {
+        gsap.set(".service_second_con .service_main_title", { opacity: 0 });
+        gsap.set(".service_third_con .service_main_title", { opacity: 1 });
+      },
     },
   });
 
@@ -317,18 +344,141 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollTrigger: {
         trigger: ".service_third_con",
         start: "0% 0%",
-        end: "100%",
+        end: "100% 100%",
         scrub: 0,
         pin: true,
-        markers: true,
         invalidateOnRefresh: true,
+        onEnter: function () {
+          gsap.set(".service_second_con .service_main_title", { opacity: 0 });
+          gsap.set(".service_third_con .service_main_title", { opacity: 1 });
+        },
+        onLeaveBack: function () {
+          gsap.set(".service_second_con .service_main_title", { opacity: 1 });
+          gsap.set(".service_third_con .service_main_title", { opacity: 0 });
+        },
       },
     })
     .to(".third_card_item:nth-child(2)", { xPercent: -100, x: -40 * 1 }, "card")
     .to(".third_card_item:nth-child(3)", { xPercent: -200, x: -40 * 2 }, "card")
     .to(".third_card_item:nth-child(4)", { xPercent: -300, x: -40 * 3 }, "card")
-    .to(".title_bg", { opacity: 1 }, "+=0.5")
-    .to(".service_text", { opacity: 1 });
-
+    .to(".title_bg", { opacity: 1 })
+    .to(".service_text", { opacity: 1 }, "-=0.5");
   // ------------------------------------------------------------------------
+  // white bg 2
+  const whiteBg2 = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "80% 0%",
+        end: "100% 100%",
+        toggleActions: "play none none reverse",
+      },
+    })
+    .to("body", { background: "#fff" })
+    .to([".challenge2", ".finance"], { color: "#000" });
+  // dark header 2
+  const darkHeaderTl2 = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".challenge2",
+        start: "0% 0%",
+        end: "100% 100%",
+        scrub: 0.5,
+      },
+    })
+    .to(["h1", ".language_menu", "header"], {
+      filter: "brightness(0) invert(0)",
+      background: "none",
+      color: "#000",
+    });
+
+  // prove2 섹션
+  const prove2 = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".challenge2",
+        start: "80% 50%",
+        end: "120% 50%",
+        scrub: 0.5,
+      },
+    })
+    .to([".prove2 .prove_box1", ".prove2 .prove_box2"], { x: 0 }, "-=0.5")
+    .to(".prove2 .prove_list:nth-child(1)", { x: "-28%" }, "-=0.5")
+    .to(".prove2 .prove_list:nth-child(3)", { x: "28%" }, "-=0.5");
+  // ------------------------------------------------------------------------
+  const financeInner = document.querySelector(".finance_con").offsetWidth;
+  const finance = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".finance",
+        start: "0% 0%",
+        end: "100% 100%",
+        scrub: 0,
+        onUpdate: (self) => {
+          if (Math.floor(self.progress * 100 >= 47)) {
+            gsap.set(".down_title span:nth-child(1)", { opacity: 0 });
+            gsap.set(".down_title span:nth-child(2)", { opacity: 1 });
+          } else {
+            gsap.set(".down_title span:nth-child(1)", { opacity: 1 });
+            gsap.set(".down_title span:nth-child(2)", { opacity: 0 });
+          }
+        },
+      },
+    })
+    .to(".down", { opacity: 1 })
+    .to(".finance_con_inner", {
+      xPercent: -100,
+      x: function () {
+        return window.innerWidth;
+      },
+    });
+  // ------------------------------------------------------------------------
+  // creator 섹션
+  const creator = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".creator",
+        start: "0% 0%",
+        end: "+=100%",
+        scrub: 1,
+        pin: true,
+      },
+    })
+    .to(".creator_intro", { opacity: 1 });
+  // ------------------------------------------------------------------------
+  // creator_slide 섹션
+  const creatorSlide = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".creator_slide",
+        start: "0% 0%",
+        end: "+=100%",
+        scrub: 0,
+        pin: true,
+      },
+    })
+    .to(".creator_slide_con_inner", {
+      xPercent: -100,
+      x: function () {
+        return window.innerWidth;
+      },
+    });
+  // ------------------------------------------------------------------------
+  // ground 섹션
+  const ground = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".ground",
+        start: "0% 30%",
+        end: "100% 100%",
+        scrub: 0,
+        onEnter: function () {
+          gsap.set(".top_btn", { opacity: 1, y: "-20vh" });
+        },
+        onLeaveBack: function () {
+          gsap.set(".top_btn", { opacity: 0 });
+        },
+      },
+    })
+    .to(".join", { y: 0 });
 });

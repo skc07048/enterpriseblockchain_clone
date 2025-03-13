@@ -29,10 +29,6 @@ section {
   height: auto;
 }
 
-.pc_off {
-  display: none;
-}
-
 .top_btn {
   cursor: pointer;
   width: 50px;
@@ -48,10 +44,12 @@ section {
   opacity: 0;
   transition: opacity 0.3s;
 }
-
+.top_btn.active {
+  opacity: 1;
+}
 .down {
-  position: fixed;
-  left: 0;
+  position: absolute;
+  left: 50%;
   bottom: 0;
   z-index: 40;
   padding: 10px 0 70px;
@@ -59,6 +57,7 @@ section {
   background-image: linear-gradient(180deg, hsla(0, 0%, 98%, 0), #fff);
   transition: opacity 0.3s;
   opacity: 0;
+  transform: translateX(-50%);
 }
 .down_arrows {
   display: flex;
@@ -89,6 +88,7 @@ section {
   left: 50%;
   top: 0;
   transform: translateX(-42%);
+  transition: opacity 0.5s;
 }
 .down_title span:nth-child(2) {
   opacity: 0;
@@ -137,8 +137,9 @@ section {
 }
 /* join 박스 컨테츠 */
 .join {
-  transition: 0.6s ease-in-out;
+  transition: 0.4s ease-in-out;
   transition-delay: 0.4s;
+  transform: translateY(100%);
 }
 .join_con {
   overflow-x: hidden;
@@ -147,11 +148,20 @@ section {
 }
 .join_con_inner {
   display: flex;
-  min-width: 100%;
+  width: max-content;
+  animation: textLoop 16s linear infinite;
 }
 .join_list_wrap {
   display: flex;
   position: relative;
+}
+@keyframes textLoop {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(700px, 0, 0);
+  }
 }
 .join_list_wrap::before {
   content: "";
@@ -296,4 +306,5 @@ footer {
 }
 .footer_logo {
   width: 193px;
+  cursor: pointer;
 }

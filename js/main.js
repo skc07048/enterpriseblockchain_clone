@@ -21,11 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let introSection = document.querySelector(".intro");
   // 스크롤 트리거 설정
   ScrollTrigger.create({
-    trigger: [".showcase", ".service_third_con"],
+    trigger: ".showcase",
     start: "0% 0%",
     end: "100% 100%",
     endTrigger: "#footer",
-    markers: true,
     onUpdate: function (self) {
       let direction = self.direction;
 

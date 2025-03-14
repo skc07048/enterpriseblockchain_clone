@@ -36,13 +36,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: auto;
   padding: 0 32px;
   font-weight: 700;
   transform: translate(-50%, -50%);
   font-size: 52px;
   line-height: 1.35;
   opacity: 0;
+  box-sizing: border-box;
 }
 
 .intro_description .intro_description_text:last-child {

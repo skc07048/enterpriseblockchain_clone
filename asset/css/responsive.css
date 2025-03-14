@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+@media screen and (max-width: 1400px) {
+  .on {
+    display: block;
+  }
+  .challenge_content .challenge_title,
+  .prove_title .prove_list,
+  .talent_title,
+  .possibility_head .head_title,
+  .business_content .business_title,
+  .service_title,
+  .service_content_title,
+  .service_main_slide .slide_title,
+  .service_text,
+  .challenge2 .challenge_content .challenge_title,
+  .prove2 .prove_title .prove_list,
+  .finance_title,
+  .creator_slide_title,
+  .ground_title {
+    font-size: 54px;
+  }
+  .showcase_descirption .showcase_descirption_text,
+  .challenge_content .challenge_text,
+  .list_title,
+  .graphic_item_title,
+  .business_content .business_text,
+  .card_info h3,
+  .service_main_description,
+  .info_list .info_list_title,
+  .slide_item .item_text,
+  .challenge2 .challenge_content .challenge_text,
+  .finance_descirption,
+  .creator_description p,
+  .creator_descirption,
+  .ground_description p {
+    font-size: 18px;
+  }
+}
